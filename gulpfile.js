@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 
 // Styles
 gulp.task('styles', function() {
-  return sass('src/styles/main.scss', { style: 'expanded' })
+  return sass('src/styles/*.scss', { style: 'expanded' })
     .pipe(autoprefixer('last 2 version'))
     .pipe(gulp.dest('dist/styles'))
     .pipe(rename({ suffix: '.min' }))

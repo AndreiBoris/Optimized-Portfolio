@@ -10,7 +10,7 @@ function logCRP() {
   stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
 }
 
-window.addEventListener('load', function(event) {
+window.addEventListener('load', function() {
 	'use strict';
   logCRP();
 });
