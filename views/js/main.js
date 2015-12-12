@@ -421,40 +421,33 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldSize = oldWidth / windowWidth;
-
-    // TODO: change to 3 sizes? no more xl?
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
+  /**
+   * [A helper function that will feed into changePizzaSizes.]
+   * @param  {[int]} size [a number between 1-3 that comes from resizePizzas]
+   * @return {[str]}      [a percentage that will inform the size of each pizza element]
+   */
+  function sizeSwitcher (size) {
       switch(size) {
         case "1":
-          return 0.25;
+          return '25%';
         case "2":
-          return 0.3333;
+          return '33.333%';
         case "3":
-          return 0.5;
+          return '50%';
         default:
           console.log("bug in sizeSwitcher");
       }
     }
 
-    var newSize = sizeSwitcher(size);
-    var dx = (newSize - oldSize) * windowWidth;
-
-    return dx;
-  }
-
-  // Iterates through pizza elements on the page and changes their widths
+  /**
+   * [Finds a new size percentage for the pizzas using sizeSwitcher and then changes the 
+   * style of the first element in the group in order to change all of their widths to 
+   * this new value.]
+   * @param  {[int]} size [a number between 1-3 that comes from resizePizzas]
+   */
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
-    }
+    var newSize = sizeSwitcher(size);
+    document.querySelectorAll(".randomPizzaContainer")[0].style.width = newSize;
   }
 
   changePizzaSizes(size);
