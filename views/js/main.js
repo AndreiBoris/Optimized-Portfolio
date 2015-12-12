@@ -16,6 +16,10 @@ Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
 
+var scrollVariables = {
+  scrollPos : 0
+}
+
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -496,7 +500,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  var scrollLocation = document.body.scrollTop;
+  scrollVariables.scrollPos += 53;
+  var scrollLocation = scrollVariables.scrollPos;
+  console.log(scrollLocation);
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollLocation / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
