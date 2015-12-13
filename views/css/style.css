@@ -58,3 +58,8 @@ form {
     display: none;
   }
 }
+
+#randomPizzas {
+  display: flex;
+  flex-wrap: wrap;
+}
