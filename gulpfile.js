@@ -16,7 +16,8 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    del = require('del');
+    del = require('del'),
+    critical = require('critical');
 
 // Styles
 gulp.task('styles', function() {
@@ -55,9 +56,51 @@ gulp.task('clean', function() {
   return del(['dist/styles', 'dist/scripts', 'dist/images']);
 });
 
-// Default task
-gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images');
+// Main task
+gulp.task('main', ['clean'], function() {
+  gulp.start('styles', 'scripts', 'images', 'lazycss', 'copyhtml');
+});
+
+// Default
+gulp.task('default', ['main'], function() {
+  gulp.start('critical')
+})
+
+/*gulp.task('copystyles', function () {
+    return gulp.src(['dist/styles/main.min.css'])
+        .pipe(rename({
+            basename: "site" // site.css
+        }))
+        .pipe(gulp.dest('dist/styles'));
+});*/
+
+gulp.task('copyhtml', function () {
+    return gulp.src(['index.html'])
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('lazycss', function() {
+    return gulp.src('src/cssLoading.js')
+      .pipe(gulp.dest('dist/scripts'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(uglify())
+      .pipe(gulp.dest('dist/scripts'))
+      .pipe(notify({ message: 'LazyCSS task complete' }));
+
+})
+
+// Critical CSS
+gulp.task('critical', ['styles', 'copyhtml'], function () {
+    critical.generate({
+        inline: false,
+        base: 'dist/',
+        src: 'index.html',
+        css: ['dist/styles/main.min.css'],
+        width: 1300,
+        height: 900,
+        dest: 'css-critical.css',
+
+    });
 });
 
 // Watch
@@ -71,6 +114,15 @@ gulp.task('watch', function() {
 
   // Watch image files
   gulp.watch('src/images/**/*', ['images']);
+
+  // Watch index.html
+  gulp.watch('index.html', ['copyhtml']);
+
+  // Watch copy of index.html
+  gulp.watch('dist/index.html', ['critical']);
+
+  // Watch cssLoading.js
+  gulp.watch('src/cssLoading.js', ['lazycss']);
 
   // Create LiveReload server
   livereload.listen();
