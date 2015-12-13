@@ -528,10 +528,15 @@ function updatePositions() {
 
     usefulVariables.scrollPos += 53;
     var scrollLocation = usefulVariables.scrollPos;
+    var phases = [Math.sin((scrollLocation / 1250)),
+      Math.sin((scrollLocation / 1250) + 1),
+      Math.sin((scrollLocation / 1250) + 2),
+      Math.sin((scrollLocation / 1250) + 3),
+      Math.sin((scrollLocation / 1250) + 4)];
 
     var items = document.querySelectorAll('.mover');
     for (var i = 0; i < items.length; i++) {
-        var phase = Math.sin((scrollLocation / 1250) + (i % 5));
+        var phase = phases[i % 5];
         items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     }
 
@@ -567,7 +572,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function displayChanger(){
   var currentWindowSize = window.innerWidth;
-  console.log('fire!');
   if (currentWindowSize <= 750 && usefulVariables.bigMode){
     usefulVariables.bigMode = false;
     resizePizzas('3');
@@ -575,10 +579,7 @@ function displayChanger(){
     usefulVariables.bigMode = true;
     resizePizzas('2');
   }
-  //requestAnimationFrame(displayChanger);
 }
 
 // Run to change the display on smaller screen automatically
 displayChanger()
-
-//requestAnimationFrame(displayChanger);
