@@ -75,9 +75,9 @@ gulp.task('default', ['main'], function() {
         .pipe(gulp.dest('dist/styles'));
 });*/
 
-gulp.task('copyhtml', function () {
-    return gulp.src(['index.html'])
-        .pipe(gulp.dest('dist/'));
+gulp.task('copyhtml', ['minify-html'], function () {
+    return gulp.src(['dist/html/index.html'])
+        .pipe(gulp.dest('dist/..'));
 });
 
 gulp.task('lazycss', function() {
@@ -86,8 +86,6 @@ gulp.task('lazycss', function() {
       .pipe(rename({ suffix: '.min' }))
       .pipe(uglify())
       .pipe(gulp.dest('dist/scripts'))
-      .pipe(notify({ message: 'LazyCSS task complete' }));
-
 })
 
 // Critical CSS
@@ -100,7 +98,6 @@ gulp.task('critical', ['styles', 'copyhtml'], function () {
         width: 1300,
         height: 900,
         dest: 'css-critical.css',
-
     });
 });
 
@@ -128,8 +125,11 @@ gulp.task('watch', function() {
   // Watch image files
   gulp.watch('src/images/**/*', ['images']);
 
-  // Watch index.html
-  gulp.watch('index.html', ['copyhtml']);
+  // Watch src/index.html
+  gulp.watch('src/index.html', ['minify-html']);
+
+  // Watch dist/html/intex.html
+  gulp.watch('dist/html/index.html', ['copyhtml'])
 
   // Watch copy of index.html
   gulp.watch('dist/index.html', ['critical']);
