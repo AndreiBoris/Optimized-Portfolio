@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     del = require('del'),
-    critical = require('critical');
+    critical = require('critical'),
+    minifyHTML = require('gulp-minify-html');
 
 // Styles
 gulp.task('styles', function() {
@@ -101,6 +102,18 @@ gulp.task('critical', ['styles', 'copyhtml'], function () {
         dest: 'css-critical.css',
 
     });
+});
+
+// Minify HTML
+gulp.task('minify-html', function() {
+  var opts = {
+    conditionals: true,
+    spare:true
+  };
+ 
+  return gulp.src('src/index.html')
+    .pipe(minifyHTML(opts))
+    .pipe(gulp.dest('dist/html/'));
 });
 
 // Watch
