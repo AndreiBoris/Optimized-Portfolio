@@ -528,11 +528,14 @@ function updatePositions() {
 
     usefulVariables.scrollPos += 53;
     var scrollLocation = usefulVariables.scrollPos;
-    var phases = [Math.sin((scrollLocation / 1250)),
-      Math.sin((scrollLocation / 1250) + 1),
-      Math.sin((scrollLocation / 1250) + 2),
-      Math.sin((scrollLocation / 1250) + 3),
-      Math.sin((scrollLocation / 1250) + 4)];
+    // Thank you to chris_838012 on the forum for pointing this out (and to his 
+    // reviewer who recommended the solution of holding an array of phase values) 
+    // https://discussions.udacity.com/t/frame-rate-confusion/31262/9
+    var phases = [];
+
+    for (var b = 0; b < 5; b++){
+      phases.push(Math.sin((scrollLocation / 1250) + b))
+    }
 
     var items = document.querySelectorAll('.mover');
     for (var i = 0; i < items.length; i++) {
