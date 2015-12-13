@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function displayChanger(){
   var currentWindowSize = window.innerWidth;
+  console.log('fire!');
   if (currentWindowSize <= 750 && usefulVariables.bigMode){
     usefulVariables.bigMode = false;
     resizePizzas('3');
@@ -574,7 +575,10 @@ function displayChanger(){
     usefulVariables.bigMode = true;
     resizePizzas('2');
   }
-  requestAnimationFrame(displayChanger);
+  //requestAnimationFrame(displayChanger);
 }
 
-requestAnimationFrame(displayChanger);
+// Run to change the display on smaller screen automatically
+displayChanger()
+
+//requestAnimationFrame(displayChanger);
