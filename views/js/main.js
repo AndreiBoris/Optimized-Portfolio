@@ -574,6 +574,7 @@ function displayChanger(){
     usefulVariables.bigMode = true;
     resizePizzas('2');
   }
+  requestAnimationFrame(displayChanger);
 }
 
-setInterval(displayChanger, 100);
+requestAnimationFrame(displayChanger);
