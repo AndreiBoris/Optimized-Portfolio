@@ -59,26 +59,13 @@ gulp.task('clean', function() {
 
 // Main task
 gulp.task('main', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'lazycss', 'copyhtml');
+  gulp.start('styles', 'scripts', 'images', 'lazycss');
 });
 
 // Default
-gulp.task('default', ['main'], function() {
+gulp.task('default', ['main', 'minify-html'], function() {
   gulp.start('critical')
 })
-
-/*gulp.task('copystyles', function () {
-    return gulp.src(['dist/styles/main.min.css'])
-        .pipe(rename({
-            basename: "site" // site.css
-        }))
-        .pipe(gulp.dest('dist/styles'));
-});*/
-
-gulp.task('copyhtml', ['minify-html'], function () {
-    return gulp.src(['dist/html/index.html'])
-        .pipe(gulp.dest('dist/..'));
-});
 
 gulp.task('lazycss', function() {
     return gulp.src('src/cssLoading.js')
@@ -89,15 +76,15 @@ gulp.task('lazycss', function() {
 })
 
 // Critical CSS
-gulp.task('critical', ['styles', 'copyhtml'], function () {
+gulp.task('critical', ['styles'], function () {
     critical.generate({
-        inline: false,
-        base: 'dist/',
+        inline: true,
+        base: 'dist/html/',
         src: 'index.html',
         css: ['dist/styles/main.min.css'],
         width: 1300,
         height: 900,
-        dest: 'css-critical.css',
+        dest: 'dist/../index.html',
     });
 });
 
@@ -128,11 +115,8 @@ gulp.task('watch', function() {
   // Watch src/index.html
   gulp.watch('src/index.html', ['minify-html']);
 
-  // Watch dist/html/intex.html
-  gulp.watch('dist/html/index.html', ['copyhtml'])
-
   // Watch copy of index.html
-  gulp.watch('dist/index.html', ['critical']);
+  gulp.watch('dist/html/index.html', ['critical']);
 
   // Watch cssLoading.js
   gulp.watch('src/cssLoading.js', ['lazycss']);
