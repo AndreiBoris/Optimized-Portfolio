@@ -33,6 +33,11 @@ form {
   position: fixed;
   width: 256px;
   z-index: -1;
+  /**
+   * These changes are taken from the following Office Hours Repo:
+   * https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
+   * These are done to reduce the time for layering and painting.
+   */
   transform: translateX();
   transform: translateZ(0);
 }
