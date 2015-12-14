@@ -2,6 +2,8 @@
 
 This is a website that I optimized parts of for performance. 
 
+### Critical Rendering Improvement
+
 The first page, index.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/). I improved the critical rendering path in the following way:
 
 * Run non-essential JavaScript asynchronously.
@@ -13,6 +15,10 @@ needed for the initial render. This causes a flash of unstyled text but a much f
 usuable page.
 * Compress the images using a different, work directory where I use imagemin (Grunt).
 * Minify the html (negligible improvement) and inlined CSS.
+
+These are things I learned through the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+
+#### Gulp
 
 Most of everything is maintained on this first page using automated Gulp tasks. 
 
@@ -37,7 +43,7 @@ And then, to have Gulp automatically perform all the required function upon chan
 $ gulp watch
 ```
 
-These are things I learned through the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+### Improved rendering efficiency
 
 The second page, pizza.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/views/pizza.html). I improved the render performance in the following way:
 
