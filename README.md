@@ -55,6 +55,13 @@ pizza element, the function now calculates the values mathematically without eve
 about the position of the viewport.
 * Change the number of background pizzas to go from 200 to 22.
 
+Two fixes that were described in [FEND Office Hours](https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS) were added to reduce render
+and paint time. Note that while the timeline looks a bit better, these changes had no visible effect on 
+performance on a Nexus 5 phone.
+
+* Add `transform: translateX();` to the mover pizzas to reduce layout time.
+* Add `transform: translateZ(0);` to the mover pizzas to reduce number of pixels being painted each time.
+
 If you got the node modules mentioned further up in the README, you can run a JavaScript lint on the main.js file that dynamically generates and updates the page by running the following terminal command in the root directory:
 ```
 $ gulp scan
