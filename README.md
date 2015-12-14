@@ -48,12 +48,12 @@ $ gulp watch
 The second page, pizza.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/views/pizza.html). I improved the render performance in the following way:
 
 * Remove unnecessary complexity in the pizza resize slider function. The slider now simply changes
-the style of the pizza elements based on a hard mapping, rather than finding the current size (
-causing forced synchronous layout) and adjusting relative to that.
+the style of the pizza elements based on a hard mapping ('1' to 25%, '2' to 33.33%, etc.), rather than finding the current size (causing forced synchronous layout) and adjusting relative to that.
 * Remove forced synchronous layout on the function that moves the background pizzas. Instead of 
 finding the current y-position of the window during the for loop that cycles through each 
 pizza element, the function now calculates the values mathematically without ever worrying 
-about the position of viewport.
+about the position of the viewport.
+* Change the number of background pizzas to go from 200 to 22.
 
 If you got the node modules mentioned further up in the README, you can run a JavaScript lint on the main.js file that dynamically generates and updates the page by running the following terminal command in the root directory:
 ```

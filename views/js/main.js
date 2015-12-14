@@ -17,16 +17,24 @@ cameron *at* udacity *dot* com
 */
 
 /**
+ * @type {Object}
  * Here we hold some variables that are used in performing the scrolling pizza movements 
  * using scrollPos and changing the page for mobile phones to remove the pizza size slider
  * using bigMode.
- * @type {Object}
+ * @type {Array} movers is an array of all the moving pizzas made so that they don't have 
+ * to be accessed by querying into the DOM each time we want to update them after a scroll
+ * This array gets built when the movers are added to the page. 
+ * @type {Int} numMovers is the number of moving pizzas and is used when moving through each
+ * of the elements to save some milliseconds that would otherwise be required in counting 
+ * the length of the movers array.
  */
 'use strict';
 
 var usefulVariables = {
     scrollPos: 0,
-    bigMode : true
+    bigMode : true,
+    movers : [],
+    numMovers : 0
 };
 
 // As you may have realized, this website randomly generates pizzas.
@@ -561,15 +569,16 @@ function updatePositions() {
       phases.push(Math.sin((scrollLocation / 1250) + b));
     }
 
-    var items = document.querySelectorAll('.mover');
+    var length = usefulVariables.numMovers;
 
     /**
      * Use the phases from the phases array to move each of the .mover pizzas 
      * in the backgroung through a sinusoidal loop.
      */
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < length; i++) {
         var phase = phases[i % 5];
-        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+        usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft + 
+          100 * phase + 'px');
     }
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -598,6 +607,15 @@ document.addEventListener('DOMContentLoaded', function() {
         elem.basicLeft = (i % cols) * s;
         elem.style.top = (Math.floor(i / cols) * s) + 'px';
         document.querySelector('#movingPizzas1').appendChild(elem);
+        /**
+         * This is a recommendation brought up in the following office hours discussion:
+         * https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
+         * It all us to keep an array of the moving pizzas so that they do not get 
+         * queried for in the DOM each time the page is scrolled.
+         */
+        usefulVariables.movers.push(elem);
+        usefulVariables.numMovers++;
+
     }
     updatePositions();
 });
