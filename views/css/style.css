@@ -59,6 +59,9 @@ form {
   }
 }
 
+/*
+Flexbox makes the pizzas take a better shape on smaller view ports.
+ */
 #randomPizzas {
   display: flex;
   flex-wrap: wrap;

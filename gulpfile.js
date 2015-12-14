@@ -88,6 +88,13 @@ gulp.task('critical', ['styles'], function () {
     });
 });
 
+// scan main.js
+gulp.task('scan', function() {
+  return gulp.src('views/js/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'))
+});
+
 // Minify HTML
 gulp.task('minify-html', function() {
   var opts = {

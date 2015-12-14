@@ -7,17 +7,25 @@
     <meta name="author" content=" Andrei Borissenko ">
     <title>Optimizated Portfolio</title>
     <link href="dist/styles/print.min.css" rel="stylesheet" media="print">
+    <!-- This is a script that I have to thank Filament Group for. It loads 
+    the css files asynchronously bringing in the web fonts and the full css file. 
+    I had to go through a series of steps to get the web fonts into their own css 
+    files, and these files can be found in dist/fonts/ 
+    https://github.com/filamentgroup/loadCSS-->
     <script async src="dist/scripts/cssLoading.min.js"></script>
-    <noscript><link href="dist/fonts/data-woff.css" rel="stylesheet"></noscript>
+    <!-- If scripts are disabled, the user will still be able to get the css 
+    but unfortunately it will be render blocking in that event. -->
     <noscript><link href="dist/styles/main.min.css" rel="stylesheet"></noscript>
+    <noscript><link href="dist/fonts/data-woff.css" rel="stylesheet"></noscript>
+    <!-- I don't have a Google Analytics profile -->
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
-      // TODO: replace with your Google Analytics profile ID.
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
+    <!-- Naturally these are loaded asychronously -->
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
   </head>
