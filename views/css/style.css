@@ -38,8 +38,8 @@ form {
    * https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
    * These are done to reduce the time for layering and painting.
    */
-  transform: translateX();
-  transform: translateZ(0);
+  /*transform: translateX();*/
+  /*transform: translateZ(0);*/
 }
 
 .randomPizzaContainer {

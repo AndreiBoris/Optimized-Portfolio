@@ -14,3 +14,5 @@ usefulVariables in order to incapsulate it.
 inside the addEventListener that waits for "DOMContentLoaded"
 * Do not create a new elem variable during each loop in the "DOMContentLoaded" 
 listener.
+* Get access to #movingPizzas1 before entering loop to avoid unnecessary DOM 
+calls.
