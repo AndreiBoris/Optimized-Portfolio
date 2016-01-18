@@ -34,7 +34,8 @@ var usefulVariables = {
     scrollPos: 0,
     bigMode : true,
     movers : [],
-    numMovers : 0
+    numMovers : 0,
+    pizzasDiv : document.getElementById('randomPizzas')
 };
 
 // As you may have realized, this website randomly generates pizzas.
@@ -493,11 +494,13 @@ var resizePizzas = function(size) {
     /**
      * Finds a new size percentage for the pizzas using sizeSwitcher and then changes the 
      * style of all the elements that have the appropriate class.
+     * Edited to use getElementsByClassName instead of querySelectorAll in order
+     * to improve performance.
      * @param  {int} size [a number between 1-3 that comes from resizePizzas]
      */
     function changePizzaSizes(size) {
         var newSize = sizeSwitcher(size);
-        var allPizzas = document.querySelectorAll('.randomPizzaContainer');
+        var allPizzas = document.getElementsByClassName('randomPizzaContainer');
         var length = allPizzas.length;
         for (var i = 0; i < length; i++) {
             allPizzas[i].style.width = newSize;
@@ -515,10 +518,11 @@ var resizePizzas = function(size) {
 
 window.performance.mark('mark_start_generating'); // collect timing data
 
-// This for-loop actually creates and appends all of the pizzas when the page loads
+// This for-loop creates and appends all of the pizzas when the page loads. 
+// The initialization of pizzasDiv has been moved out of this loop and into the 
+// usefulVariables object.
 for (var i = 2; i < 100; i++) {
-    var pizzasDiv = document.getElementById('randomPizzas');
-    pizzasDiv.appendChild(pizzaElementGenerator(i));
+    usefulVariables.pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
