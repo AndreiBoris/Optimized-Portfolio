@@ -16,3 +16,11 @@ inside the addEventListener that waits for "DOMContentLoaded"
 listener.
 * Get access to #movingPizzas1 before entering loop to avoid unnecessary DOM 
 calls.
+* Created an optional variable for updatePositions that is run on the first 
+call to the function in order to position the pizzas initially as part of the 
+`DOMContentLoaded` handler.
+
+**Changes inside views/css/style.css**
+* Added will-change: transform to mover class.
+* Removed transform: translateZ(0) hack in order to allow for better performance
+on phones with weak GPUs.

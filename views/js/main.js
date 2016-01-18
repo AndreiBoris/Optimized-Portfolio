@@ -22,14 +22,14 @@ page is scrolled.
 
 var usefulVariables = {
     scrollPos: 0,
-    bigMode : true,
-    movers : [],
-    numMovers : 0,
+    bigMode: true,
+    movers: [],
+    numMovers: 0,
     // Iterator for number of times the pizzas in the background have scrolled.
     // Used by updatePositions() to decide when to log the average time per frame
     frame: 0,
     // This is needed for adding the pizza elements.
-    pizzasDiv : document.getElementById('randomPizzas')
+    pizzasDiv: document.getElementById('randomPizzas')
 };
 
 // As you may have realized, this website randomly generates pizzas.
@@ -541,7 +541,7 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
-function updatePositions() {
+function updatePositions(initial) {
     usefulVariables.frame++;
     window.performance.mark('mark_start_frame');
     /**
@@ -563,8 +563,8 @@ function updatePositions() {
      * @type {Array}
      */
     var phases = [];
-    for (var b = 0; b < 5; b++){
-      phases.push(Math.sin((scrollLocation / 1250) + b));
+    for (var b = 0; b < 5; b++) {
+        phases.push(Math.sin((scrollLocation / 1250) + b));
     }
 
     // Commented out old length value:.
@@ -578,12 +578,22 @@ function updatePositions() {
      * Use the phases from the phases array to move each of the .mover pizzas 
      * in the backgroung through a sinusoidal loop.
      * Edited to move len in as a local variable for increased efficiency.
+     * In the initial call to this function, we set pizza positions using 
+     * basicLeft and then move on just moving them through a regular pattern.
      */
-    for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
+    if (initial == 1) {
+        for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
+            phase = phases[i % 5];
+            usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft +
+                100 * phase + 'px');
+        }
+    } else {
+        for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
         phase = phases[i % 5];
-        usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft + 
-          100 * phase + 'px');
+        usefulVariables.movers[i].style.transform = 'translate( ' + phase * 100 + 'px, 0)';
     }
+    }
+    
 
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -626,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
         usefulVariables.numMovers++;
 
     }
-    updatePositions();
+    updatePositions(1);
 });
 
 /**
@@ -639,15 +649,15 @@ document.addEventListener('DOMContentLoaded', function() {
  * from all of the randomly regenerated pizzas and also the pizza size 
  * slider bar.
  */
-function displayChanger(){
-  var currentWindowSize = window.innerWidth;
-  if (currentWindowSize <= 750 && usefulVariables.bigMode){
-    usefulVariables.bigMode = false;
-    resizePizzas('3');
-  } else if (currentWindowSize >= 751 && !usefulVariables.bigMode){
-    usefulVariables.bigMode = true;
-    resizePizzas('2');
-  }
+function displayChanger() {
+    var currentWindowSize = window.innerWidth;
+    if (currentWindowSize <= 750 && usefulVariables.bigMode) {
+        usefulVariables.bigMode = false;
+        resizePizzas('3');
+    } else if (currentWindowSize >= 751 && !usefulVariables.bigMode) {
+        usefulVariables.bigMode = true;
+        resizePizzas('2');
+    }
 }
 
 /**
