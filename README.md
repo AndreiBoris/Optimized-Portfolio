@@ -62,7 +62,9 @@ and paint time. Note that while the timeline looks a bit better, these changes h
 performance on a Nexus 5 phone.
 
 * Add `transform: translateX();` to the mover pizzas to reduce layout time.
-* Add `transform: translateZ(0);` to the mover pizzas to reduce number of pixels being painted each time.
+* Used `transform` instead of `left` when moving the pizzas as this appears to 
+only require a composite step and bypasses the layout and paint steps (according
+to [CSS Triggers](http://csstriggers.com/))
 
 If you got the node modules mentioned further up in the README, you can run a JavaScript lint on the main.js file that dynamically generates and updates the page by running the following terminal command in the root directory:
 ```

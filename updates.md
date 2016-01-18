@@ -19,6 +19,7 @@ calls.
 * Created an optional variable for updatePositions that is run on the first 
 call to the function in order to position the pizzas initially as part of the 
 `DOMContentLoaded` handler.
+* Made all comments for functions conform to JSDoc style.
 
 **Changes inside views/css/style.css**
 * Added will-change: transform to mover class.
