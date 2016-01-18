@@ -684,9 +684,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var s = 256;
     var elem;
     var target = document.getElementById('movingPizzas1');
-    // Edited to have 24 pizzas such that each column can have the same number 
-    // of pizzas.
-    for (var i = 0; i < 24; i++) {
+    /* Edited to generate an appropriate number of pizzas depending on how tall
+    the screen is. */    
+    var screenHeight = window.screen.height;
+    var moverHeight = 225;
+    var numRows = Math.floor(screenHeight / moverHeight);
+    var numPizzas = numRows * cols;
+    
+    for (var i = 0; i < numPizzas; i++) {
         elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = 'images/pizza.png';
