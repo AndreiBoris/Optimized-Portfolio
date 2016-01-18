@@ -581,63 +581,6 @@ function updatePositions() {
      */
     for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
         phase = phases[i % 5];
-        // usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft + 
-        //   100 * phase + 'px');
-        usefulVariables.movers[i].style.transform = 'translateX(' + 100 * phase + 'px)';
-    }
-
-
-    // User Timing API to the rescue again. Seriously, it's worth learning.
-    // Super easy to create custom metrics.
-    window.performance.mark('mark_end_frame');
-    window.performance.measure('measure_frame_duration', 'mark_start_frame', 'mark_end_frame');
-    if (usefulVariables.frame % 10 === 0) {
-        var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
-        logAverageFrame(timesToUpdatePosition);
-    }
-}
-
-// Moves the sliding background pizzas based on scroll position
-function initialPositions() {
-    usefulVariables.frame++;
-    window.performance.mark('mark_start_frame');
-    /**
-     * Increment the scrollPos by the same amount that a single scroll action 
-     * on my mousewheel changes the location of my the viewport vertically.
-     */
-    usefulVariables.scrollPos += 53;
-
-    /**
-     * Take the current scrollPos as we will be using it to inform how the
-     * pizzas should move in a subsequent for-loop.
-     * @type {int}
-     */
-    var scrollLocation = usefulVariables.scrollPos;
-    /**
-     * Thank you to chris_838012 on the forum for pointing this out (and to his
-     * reviewer who recommended the solution of holding an array of phase values): 
-     * https://discussions.udacity.com/t/frame-rate-confusion/31262/9
-     * @type {Array}
-     */
-    var phases = [];
-    for (var b = 0; b < 5; b++){
-      phases.push(Math.sin((scrollLocation / 1250) + b));
-    }
-
-    // Commented out old length value:.
-    // var length = usefulVariables.numMovers;
-
-    // Variable will be used to keep track of the movements of background pizzas
-    // in the following for loop.
-    var phase;
-
-    /**
-     * Use the phases from the phases array to move each of the .mover pizzas 
-     * in the backgroung through a sinusoidal loop.
-     * Edited to move len in as a local variable for increased efficiency.
-     */
-    for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
-        phase = phases[i % 5];
         usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft + 
           100 * phase + 'px');
     }
@@ -683,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
         usefulVariables.numMovers++;
 
     }
-    initialPositions();
+    updatePositions();
 });
 
 /**
