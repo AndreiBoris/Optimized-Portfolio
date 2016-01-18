@@ -35,6 +35,10 @@ var usefulVariables = {
     bigMode : true,
     movers : [],
     numMovers : 0,
+    // Iterator for number of times the pizzas in the background have scrolled.
+    // Used by updatePositions() to decide when to log the average time per frame
+    frame: 0,
+    // This is needed for adding the pizza elements.
     pizzasDiv : document.getElementById('randomPizzas')
 };
 
@@ -531,9 +535,7 @@ window.performance.measure('measure_pizza_generation', 'mark_start_generating', 
 var timeToGenerate = window.performance.getEntriesByName('measure_pizza_generation');
 console.log('Time to generate pizzas on load: ' + timeToGenerate[0].duration + 'ms');
 
-// Iterator for number of times the pizzas in the background have scrolled.
-// Used by updatePositions() to decide when to log the average time per frame
-var frame = 0;
+// Moved initialization to usefulVariables for incapsulation. 
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
 function logAverageFrame(times) { // times is the array of User Timing measurements from updatePositions()
@@ -550,7 +552,7 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
-    frame++;
+    usefulVariables.frame++;
     window.performance.mark('mark_start_frame');
     /**
      * Increment the scrollPos by the same amount that a single scroll action 
@@ -575,14 +577,20 @@ function updatePositions() {
       phases.push(Math.sin((scrollLocation / 1250) + b));
     }
 
-    var length = usefulVariables.numMovers;
+    // Commented out old length value:.
+    // var length = usefulVariables.numMovers;
+
+    // Variable will be used to keep track of the movements of background pizzas
+    // in the following for loop.
+    var phase;
 
     /**
      * Use the phases from the phases array to move each of the .mover pizzas 
      * in the backgroung through a sinusoidal loop.
+     * Edited to move len in as a local variable for increased efficiency.
      */
-    for (var i = 0; i < length; i++) {
-        var phase = phases[i % 5];
+    for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
+        phase = phases[i % 5];
         usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft + 
           100 * phase + 'px');
     }
@@ -591,7 +599,7 @@ function updatePositions() {
     // Super easy to create custom metrics.
     window.performance.mark('mark_end_frame');
     window.performance.measure('measure_frame_duration', 'mark_start_frame', 'mark_end_frame');
-    if (frame % 10 === 0) {
+    if (usefulVariables.frame % 10 === 0) {
         var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
         logAverageFrame(timesToUpdatePosition);
     }

@@ -117,7 +117,7 @@ gulp.task('watch', function() {
   gulp.watch('src/scripts/**/*.js', ['scripts']);
 
   // Watch .js files for views
-  gulp.watch('views/js/**/*.js', ['scripts']);
+  gulp.watch('views/js/**/*.js', ['scan']);
 
   // Watch image files
   gulp.watch('src/images/**/*', ['images']);
@@ -131,10 +131,10 @@ gulp.task('watch', function() {
   // Watch cssLoading.js
   gulp.watch('src/cssLoading.js', ['lazycss']);
 
-  // Create LiveReload server
+  /*// Create LiveReload server
   livereload.listen();
 
   // Watch any files in dist/, reload on change
-  gulp.watch(['dist/**']).on('change', livereload.changed);
+  gulp.watch(['dist/**']).on('change', livereload.changed);*/
 
 });
