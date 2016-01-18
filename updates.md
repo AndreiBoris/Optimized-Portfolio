@@ -20,6 +20,8 @@ calls.
 call to the function in order to position the pizzas initially as part of the 
 `DOMContentLoaded` handler.
 * Made all comments for functions conform to JSDoc style.
+* Fixed minor errors in updatePositions to do with == instead of === and 
+redefinitions of `i` and `len` variables.
 
 **Changes inside views/css/style.css**
 * Added will-change: transform to mover class.

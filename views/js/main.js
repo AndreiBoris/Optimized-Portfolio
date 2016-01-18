@@ -648,14 +648,16 @@ function updatePositions(initial) {
      * In the initial call to this function, we set pizza positions using 
      * basicLeft and then move on just moving them through a regular pattern.
      */
-    if (initial == 1) {
-        for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
+    var i;
+    var len;
+    if (initial === 1) {
+        for (i = 0, len = usefulVariables.numMovers; i < len; i++) {
             phase = phases[i % 5];
             usefulVariables.movers[i].style.left = (usefulVariables.movers[i].basicLeft +
                 100 * phase + 'px');
         }
     } else {
-        for (var i = 0, len = usefulVariables.numMovers; i < len; i++) {
+        for (i = 0, len = usefulVariables.numMovers; i < len; i++) {
         phase = phases[i % 5];
         usefulVariables.movers[i].style.transform = 'translate( ' + phase * 100 + 'px, 0)';
     }
