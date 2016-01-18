@@ -2,6 +2,8 @@
 
 This is a website that I optimized parts of for performance. 
 
+[Full list of changes since initial submission.](updates.md)
+
 ### Critical Rendering Improvement
 
 The first page, index.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/). I improved the critical rendering path in the following way:
