@@ -10,3 +10,7 @@ usefulVariables in order to incapsulate it.
 * Move the frames variable into usefulVariables for incapsulation. 
 * Made len a local variable inside updatePositions for loop
 * Decleared phase variable outside of loop in updatePositions.
+* Changed number of pizzas to 24, a multiple of the number of the cols value 
+inside the addEventListener that waits for "DOMContentLoaded"
+* Do not create a new elem variable during each loop in the "DOMContentLoaded" 
+listener.

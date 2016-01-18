@@ -612,8 +612,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    for (var i = 0; i < 22; i++) {
-        var elem = document.createElement('img');
+    var elem;
+    for (var i = 0; i < 24; i++) {
+        elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = 'images/pizza.png';
         elem.style.height = '100px';
@@ -624,8 +625,8 @@ document.addEventListener('DOMContentLoaded', function() {
         /**
          * This is a recommendation brought up in the following office hours discussion:
          * https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
-         * It all us to keep an array of the moving pizzas so that they do not get 
-         * queried for in the DOM each time the page is scrolled.
+         * It allows us to keep an array of the moving pizzas so that they do 
+         * not get queried for in the DOM each time the page is scrolled.
          */
         usefulVariables.movers.push(elem);
         usefulVariables.numMovers++;
