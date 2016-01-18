@@ -595,6 +595,7 @@ function updatePositions() {
           100 * phase + 'px');
     }
 
+
     // User Timing API to the rescue again. Seriously, it's worth learning.
     // Super easy to create custom metrics.
     window.performance.mark('mark_end_frame');
@@ -613,6 +614,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
     var elem;
+    var target = document.getElementById('movingPizzas1');
+    // Edited to have 24 pizzas such that each column can have the same number 
+    // of pizzas.
     for (var i = 0; i < 24; i++) {
         elem = document.createElement('img');
         elem.className = 'mover';
@@ -621,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function() {
         elem.style.width = '73.333px';
         elem.basicLeft = (i % cols) * s;
         elem.style.top = (Math.floor(i / cols) * s) + 'px';
-        document.querySelector('#movingPizzas1').appendChild(elem);
+        target.appendChild(elem);
         /**
          * This is a recommendation brought up in the following office hours discussion:
          * https://github.com/udacity/fend-office-hours/tree/master/Web%20Optimization/Effective%20Optimizations%20for%2060%20FPS
