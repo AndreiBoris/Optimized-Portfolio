@@ -489,17 +489,21 @@ var pizzaElementGenerator = function(i) {
 
 /**
  * resizePizzas is called when the slider in 'Our Pizzas' section of the website
- * moves. 
+ * moves. It handles all the necessary changes when pizzas are resized through 
+ * helper functions. See comments on helper functions for details.
  * @param  {int} size A number indicating how big the pizzas should be. 
  */
 var resizePizzas = function(size) {
     window.performance.mark('mark_start_resize'); // User Timing API function
 
-    /* Changes the value for the size of the pizza above the slider.
+    /**
+     * changeSliderLabel changes the label indicating the size of the pizzas 
+     * above the slider.
      * Edited to use getElementById instead of querySelector in an effort to
      * improve performance.
-     */  
-     
+     * @param  {int} size is a number from 1 to 3
+     * @return {void}
+     */
     function changeSliderLabel(size) {
         switch (size) {
             case '1':
