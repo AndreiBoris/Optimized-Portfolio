@@ -27,6 +27,8 @@ Authored by Andrei Borissenko
 
 var usefulVariables = {
     scrollPos: 0,
+    screenHeight: window.screen.height,
+    scrollDist: Math.floor(window.screen.height / 20),
     bigMode: true,
     movers: [],
     numMovers: 0,
@@ -619,7 +621,7 @@ function updatePositions(initial) {
      * Increment the scrollPos by the same amount that a single scroll action 
      * on my mousewheel changes the location of my the viewport vertically.
      */
-    usefulVariables.scrollPos += 53;
+    usefulVariables.scrollPos += usefulVariables.scrollDist;
 
     /**
      * Take the current scrollPos as we will be using it to inform how the
@@ -692,9 +694,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var target = document.getElementById('movingPizzas1');
     /* Edited to generate an appropriate number of pizzas depending on how tall
     the screen is. */    
-    var screenHeight = window.screen.height;
     var moverHeight = 225;
-    var numRows = Math.floor(screenHeight / moverHeight);
+    var numRows = Math.floor(usefulVariables.screenHeight / moverHeight);
     var numPizzas = numRows * cols;
     
     for (var i = 0; i < numPizzas; i++) {
