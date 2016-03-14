@@ -1,10 +1,10 @@
 ## Website Performance Optimization portfolio project
 
 This is a fork of [this repository.](https://github.com/udacity/frontend-nanodegree-mobile-portfolio)
+I optimized parts of this website for performance.
 
-This is a website that I optimized parts of for performance.
-
-[Full list of changes since initial submission.](updates.md)
+[Full list of changes since initial submission.](updates.md) For the initial
+changes, read below:
 
 ### Critical Rendering Improvement
 
