@@ -1,3 +1,10 @@
+#### January 19th 2016
+
+**Changes inside views/js/main.js**
+* Incapsulate screenHeigth and scrollDist in usefulVariables object
+* Make the change in the movers' positions upon scroll be dependent on the 
+height of the screen on which the site was loaded. 
+
 #### January 18th 2016
 
 **Changes inside views/js/main.js**
