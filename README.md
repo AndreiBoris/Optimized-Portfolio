@@ -1,3 +1,8 @@
+* [Critical Rendering Path Improvement](#critical-rendering-path-improvement)
+* [Gulp](#gulp)
+* [Frame Rate Boost](#frame-rate-boost)
+* [Credits](#credits)
+
 ## Website Performance Optimization portfolio project
 
 This is a fork of [this repository.](https://github.com/udacity/frontend-nanodegree-mobile-portfolio)
@@ -6,7 +11,7 @@ I optimized parts of this website for performance.
 [Full list of changes since initial submission.](updates.md) For the initial
 changes, read below:
 
-### Critical Rendering Improvement
+### Critical Rendering Path Improvement
 
 The first page, index.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/). I improved the critical rendering path in the following way:
 
@@ -47,7 +52,7 @@ And then, to have Gulp automatically perform all the required function upon chan
 $ gulp watch
 ```
 
-### Improved rendering efficiency
+### Frame Rate Boost
 
 The second page, pizza.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/views/pizza.html). I improved the render performance in the following way:
 
