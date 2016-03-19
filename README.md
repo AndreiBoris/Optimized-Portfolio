@@ -1,9 +1,10 @@
+* [Website Performance Optimization](#website-performance-optimization)
 * [Critical Rendering Path Improvement](#critical-rendering-path-improvement)
 * [Gulp](#gulp)
 * [Frame Rate Boost](#frame-rate-boost)
 * [Credits](#credits)
 
-## Website Performance Optimization portfolio project
+## Website Performance Optimization
 
 This is a fork of [this repository.](https://github.com/udacity/frontend-nanodegree-mobile-portfolio)
 I optimized parts of this website for performance.
