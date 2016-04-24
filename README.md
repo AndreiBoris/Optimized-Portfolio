@@ -14,7 +14,7 @@ changes, read below:
 
 ### Critical Rendering Path Improvement
 
-The first page, index.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/). I improved the critical rendering path in the following way:
+The first page, index.html can be accessed [here](http://andreiboris.github.io/Optimized-Portfolio/). I improved the critical rendering path in the following way:
 
 * Run non-essential JavaScript asynchronously.
 * Put the CSS that is essential for displaying the first page inline to avoid
@@ -55,7 +55,7 @@ $ gulp watch
 
 ### Frame Rate Boost
 
-The second page, pizza.html can be accessed [here](http://andreicommunication.github.io/Optimized-Portfolio/views/pizza.html). I improved the render performance in the following way:
+The second page, pizza.html can be accessed [here](http://andreiboris.github.io/Optimized-Portfolio/views/pizza.html). I improved the render performance in the following way:
 
 * Remove unnecessary complexity in the pizza resize slider function. The slider now simply changes
 the style of the pizza elements based on a hard mapping ('1' to 25%, '2' to 33.33%, etc.), rather than finding the current size (causing forced synchronous layout) and adjusting relative to that.
